@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import lombok.Data;
 
 @Data
-@Entity
+@Entity(name = "books")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
