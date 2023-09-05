@@ -16,12 +16,12 @@ public class BookDto {
 
     public BookDto(Long id, String title, String author, String isbn,
                    BigDecimal price, String description, String coverImage) {
+        this.id = id;
         this.title = title;
         this.author = author;
+        this.price = price;
         this.isbn = isbn;
         this.description = description;
         this.coverImage = coverImage;
-        this.id = id;
-        this.price = price;
     }
 }
