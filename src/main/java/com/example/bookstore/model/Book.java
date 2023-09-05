@@ -31,7 +31,8 @@ public class Book {
     private String isbn;
     @Column(name = "price",
             nullable = false,
-            columnDefinition = "BIGINT CHECK (price >= 0)")
+            columnDefinition = "BIGINT CHECK (price >= 0)"
+    )
     private BigDecimal price;
     @Column(name = "description")
     private String description;

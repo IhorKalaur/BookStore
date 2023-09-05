@@ -6,22 +6,12 @@ import lombok.Data;
 @Data
 public class BookDto {
 
+    private Long id;
     private String title;
     private String author;
     private String isbn;
+    private BigDecimal price;
     private String description;
     private String coverImage;
-    private Long id;
-    private BigDecimal price;
 
-    public BookDto(Long id, String title, String author, String isbn,
-                   BigDecimal price, String description, String coverImage) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.price = price;
-        this.isbn = isbn;
-        this.description = description;
-        this.coverImage = coverImage;
-    }
 }
