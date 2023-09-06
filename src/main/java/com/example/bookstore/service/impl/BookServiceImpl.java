@@ -2,10 +2,12 @@ package com.example.bookstore.service.impl;
 
 import com.example.bookstore.dto.BookDto;
 import com.example.bookstore.dto.CreateBookRequestDto;
+import com.example.bookstore.exceptions.EntityNotFoundException;
 import com.example.bookstore.mapper.BookMapper;
 import com.example.bookstore.model.Book;
 import com.example.bookstore.repository.BookRepository;
 import com.example.bookstore.service.BookService;
+import java.math.BigDecimal;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,26 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto getById(Long id) {
-        return bookMapper.toDto(bookRepository.getById(id));
+        return bookMapper.toDto(bookRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Can't get book by id: " + id)));
+    }
+
+    @Override
+    public BookDto updateById(Long bookId, String newTitle, String newAuthor, String newIsbn,
+                              BigDecimal newPrice, String newDescription, String newCoverImage) {
+        Book book = bookRepository.updateBookById(bookId,newTitle,newAuthor,newIsbn,newPrice,newDescription,newCoverImage);
+        return bookMapper.toDto(book);
+    }
+
+    @Override
+    public BookDto update(Long id, CreateBookRequestDto requestDto) {
+        Book book = bookMapper.toModel(requestDto);
+        book.setId(id);
+        return bookMapper.toDto(bookRepository.save(book));
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        bookRepository.deleteById(id);
     }
 }
