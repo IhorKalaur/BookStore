@@ -30,12 +30,10 @@ public class Book {
             unique = true)
     private String isbn;
     @Column(name = "price",
-            nullable = false,
-            columnDefinition = "BIGINT CHECK (price >= 0)"
-    )
+            nullable = false)
     private BigDecimal price;
     @Column(name = "description")
     private String description;
-    @Column(name = "coverImage")
+    @Column(name = "cover_image")
     private String coverImage;
 }
