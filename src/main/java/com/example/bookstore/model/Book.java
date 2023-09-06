@@ -38,7 +38,7 @@ public class Book {
 
     @Column(name = "price",
             nullable = false,
-            columnDefinition = "NUMERIC(10, 2) check (price >= 0)")
+            columnDefinition = "NUMERIC(10, 2)")
     private BigDecimal price;
 
     @Column(name = "description")
