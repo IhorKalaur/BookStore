@@ -3,7 +3,7 @@ package com.example.bookstore.service.impl;
 import com.example.bookstore.dto.user.CreateUserRequestDto;
 import com.example.bookstore.dto.user.UserDto;
 import com.example.bookstore.dto.user.UserRegistrationRequestDto;
-import com.example.bookstore.dto.user.UserResponseDto;
+import com.example.bookstore.dto.user.UserRegistrationResponseDto;
 import com.example.bookstore.exceptions.EntityNotFoundException;
 import com.example.bookstore.exceptions.RegistrationException;
 import com.example.bookstore.mapper.UserMapper;
@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
 
     @Override
-    public UserResponseDto register(UserRegistrationRequestDto requestDto)
+    public UserRegistrationResponseDto register(UserRegistrationRequestDto requestDto)
             throws RegistrationException {
         if (userRepository.findByEmail(requestDto.getEmail()).isPresent()) {
             throw new RegistrationException("Can't register user with this email "
