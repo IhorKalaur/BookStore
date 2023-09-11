@@ -1,6 +1,5 @@
 package com.example.bookstore.controller;
 
-import com.example.bookstore.dto.user.UserDto;
 import com.example.bookstore.service.UserService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
