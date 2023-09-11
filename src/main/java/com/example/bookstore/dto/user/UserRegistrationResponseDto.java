@@ -1,6 +1,6 @@
 package com.example.bookstore.dto.user;
 
-public class UserResponseDto {
+public class UserRegistrationResponseDto {
     private Long id;
     private String email;
 }

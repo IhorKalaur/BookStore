@@ -4,7 +4,7 @@ import com.example.bookstore.config.MapperConfig;
 import com.example.bookstore.dto.user.CreateUserRequestDto;
 import com.example.bookstore.dto.user.UserDto;
 import com.example.bookstore.dto.user.UserRegistrationRequestDto;
-import com.example.bookstore.dto.user.UserResponseDto;
+import com.example.bookstore.dto.user.UserRegistrationResponseDto;
 import com.example.bookstore.model.User;
 import org.mapstruct.Mapper;
 
@@ -14,7 +14,7 @@ public interface UserMapper {
 
     User toModel(CreateUserRequestDto requestBookDto);
 
-    UserResponseDto toResponseDto(User user);
+    UserRegistrationResponseDto toResponseDto(User user);
 
     UserRegistrationRequestDto toUserRegistrationRequestDto(User user);
 }
