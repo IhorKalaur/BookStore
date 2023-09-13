@@ -50,8 +50,8 @@ public class BookController {
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "create a new book"
-            , description = "save new book to DB with unique ISBN number")
+    @Operation(summary = "create a new book",
+            description = "save new book to DB with unique ISBN number")
     public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookRequestDto) {
         return bookService.save(bookRequestDto);
     }
