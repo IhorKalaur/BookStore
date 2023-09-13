@@ -23,7 +23,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: user_id
-                  valueComputed: (SELECT id FROM users WHERE email = 'sAdmin@book.store')
+                  valueComputed: (SELECT id FROM users WHERE email = 'admin@admin.ua')
               - column:
                   name: role_id
                   valueComputed: (SELECT id FROM roles WHERE name = 'ROLE_ADMIN')
