@@ -7,7 +7,6 @@ import com.example.bookstore.mapper.BookMapper;
 import com.example.bookstore.model.Book;
 import com.example.bookstore.repository.BookRepository;
 import com.example.bookstore.service.BookService;
-import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +19,7 @@ public class BookServiceImpl implements BookService {
     private final BookMapper bookMapper;
 
     @Override
-    public BookDto save(@Valid CreateBookRequestDto requestDto) {
+    public BookDto save(CreateBookRequestDto requestDto) {
         return bookMapper.toDto(
                 bookRepository.save(
                         bookMapper.toModel(requestDto)));
