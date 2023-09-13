@@ -12,6 +12,4 @@ public interface UserMapper {
     User toModel(UserRegistrationRequestDto requestDto);
 
     UserRegistrationResponseDto toResponseDto(User user);
-
-    UserRegistrationRequestDto toUserRegistrationRequestDto(User user);
 }

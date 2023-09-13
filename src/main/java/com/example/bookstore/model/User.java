@@ -11,9 +11,10 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.apache.commons.lang3.builder.ToStringExclude;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
@@ -51,7 +52,9 @@ public class User implements UserDetails {
     @Column(name = "shipping_address ")
     private String shippingAddress;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ToStringExclude
+    @EqualsAndHashCode.Exclude
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -65,7 +68,9 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+                .toList();
     }
 
     @Override
