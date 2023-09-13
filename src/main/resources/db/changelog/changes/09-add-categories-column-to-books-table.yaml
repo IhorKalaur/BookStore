@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: add_categories_column_to_books_table
+      author: ihor-kalaur
+      changes:
+        - addColumn:
+            tableName: books
+            columns:
+              - column:
+                  name: categories
+                  type: VARCHAR(255)
