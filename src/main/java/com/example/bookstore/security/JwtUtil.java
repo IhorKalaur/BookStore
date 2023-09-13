@@ -40,7 +40,7 @@ public class JwtUtil {
                     .parseClaimsJws(token);
             return !claimsJws.getBody().getExpiration().before(new Date());
         } catch (JwtException | IllegalArgumentException e) {
-            throw new JwtException("Ex[ired or invalid JWT token");
+            throw new JwtException("Expired or invalid JWT token");
         }
     }
 
