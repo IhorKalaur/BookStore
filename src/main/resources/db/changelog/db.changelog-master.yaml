@@ -11,3 +11,7 @@ databaseChangeLog:
       file: db/changelog/changes/05-create-users_roles-table.yaml
   - include:
       file: db/changelog/changes/06-insert-admin-into-users-table.yaml
+  - include:
+      file: db/changelog/changes/07-create-category-table.yaml
+  - include:
+      file: db/changelog/changes/08-create-books-categories-table.yaml
