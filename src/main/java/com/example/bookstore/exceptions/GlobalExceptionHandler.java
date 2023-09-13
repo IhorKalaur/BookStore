@@ -35,8 +35,21 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(body, headers, status);
     }
 
+    @ExceptionHandler(RegistrationException.class)
+    protected ResponseEntity<Object> handleRegistrationException(
+            RegistrationException ex,
+            WebRequest request) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("status", HttpStatus.BAD_REQUEST);
+        body.put("error", "Registration error");
+        body.put("message", ex.getMessage());
+
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleAllExceptions(Exception ex) {
+    protected ResponseEntity<String> handleAllExceptions(Exception ex) {
         return new ResponseEntity<>("An unexpected error occurred",
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
