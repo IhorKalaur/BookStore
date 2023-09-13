@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
         description = "Authenticate and register new users")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(name = "/auth")
+@RequestMapping(value = "/auth")
 public class AuthenticationController {
     private final UserService userService;
     private final AuthenticationService authenticationService;
