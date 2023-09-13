@@ -50,14 +50,16 @@ public class BookController {
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "create a new book", description = "create a new book")
+    @Operation(summary = "create a new book"
+            , description = "save new book to DB with unique ISBN number")
     public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookRequestDto) {
         return bookService.save(bookRequestDto);
     }
 
     @PutMapping("{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @Operation(summary = "update a book", description = "update a book")
+    @Operation(summary = "update a book", description = "Update a book's information "
+            + "in the database using the provided book data.")
     public BookDto update(@PathVariable Long id,
                           @RequestBody @ Valid CreateBookRequestDto bookRequestDto) {
         return bookService.update(id, bookRequestDto);
