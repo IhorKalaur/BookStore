@@ -17,7 +17,6 @@ import org.hibernate.annotations.Where;
 @Where(clause = "is_deleted=false")
 @Table(name = "books")
 public class Book {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -37,8 +36,7 @@ public class Book {
     private String isbn;
 
     @Column(name = "price",
-            nullable = false,
-            columnDefinition = "NUMERIC(10, 2)")
+            nullable = false)
     private BigDecimal price;
 
     @Column(name = "description")
@@ -46,7 +44,6 @@ public class Book {
 
     @Column(name = "cover_image")
     private String coverImage;
-
     @Column(name = "is_deleted",
             nullable = false)
     private boolean isDeleted = false;
