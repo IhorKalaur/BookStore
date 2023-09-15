@@ -52,6 +52,7 @@ public class Book {
 
     @Column(name = "cover_image")
     private String coverImage;
+
     @ToStringExclude
     @EqualsAndHashCode.Exclude
     @ManyToMany(fetch = FetchType.LAZY)
@@ -63,5 +64,6 @@ public class Book {
     private Set<Category> categories = new HashSet<>();
     @Column(name = "is_deleted",
             nullable = false)
+
     private boolean isDeleted = false;
 }

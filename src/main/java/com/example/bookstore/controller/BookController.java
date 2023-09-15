@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookController {
     private final BookService bookService;
 
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "get all books",
@@ -58,6 +57,7 @@ public class BookController {
     public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookRequestDto) {
         return bookService.save(bookRequestDto);
     }
+
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "update a book",
