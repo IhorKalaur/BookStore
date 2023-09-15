@@ -49,7 +49,7 @@ public class User implements UserDetails {
             nullable = false)
     private String lastName;
 
-    @Column(name = "shipping_address ")
+    @Column(name = "shipping_address")
     private String shippingAddress;
 
     @ToStringExclude
