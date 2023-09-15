@@ -4,7 +4,8 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import java.util.Set;
 
-public class ValidCategoryIdsValidator implements ConstraintValidator<CategoryIdsValidator, Set<Long>> {
+public class ValidCategoryIdsValidator implements
+        ConstraintValidator<CategoryIdsValidator, Set<Long>> {
     @Override
     public boolean isValid(Set<Long> value, ConstraintValidatorContext context) {
         if (value == null || value.isEmpty()) {
