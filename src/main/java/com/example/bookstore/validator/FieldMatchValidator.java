@@ -5,20 +5,20 @@ import jakarta.validation.ConstraintValidatorContext;
 import org.apache.commons.beanutils.BeanUtils;
 
 public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Object> {
-    private String firstFieldName;
-    private String secondFieldName;
+    private String firstFieldToComparing;
+    private String secondFieldToComparing;
 
     @Override
     public void initialize(final FieldMatch constraintAnnotation) {
-        firstFieldName = constraintAnnotation.first();
-        secondFieldName = constraintAnnotation.second();
+        firstFieldToComparing = constraintAnnotation.first();
+        secondFieldToComparing = constraintAnnotation.second();
     }
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         try {
-            Object firstObj = BeanUtils.getProperty(value, firstFieldName);
-            Object secondObj = BeanUtils.getProperty(value, secondFieldName);
+            Object firstObj = BeanUtils.getProperty(value, firstFieldToComparing);
+            Object secondObj = BeanUtils.getProperty(value, secondFieldToComparing);
 
             return firstObj == null && secondObj == null
                     || firstObj != null && firstObj.equals(secondObj);

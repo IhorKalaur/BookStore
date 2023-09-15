@@ -1,5 +1,6 @@
 package com.example.bookstore.exceptions;
 
+import com.example.bookstore.dto.error.ErrorResponseDto;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -39,13 +40,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleRegistrationException(
             RegistrationException ex,
             WebRequest request) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("status", HttpStatus.BAD_REQUEST);
-        body.put("error:", "Registration error");
-        body.put("message:", ex.getMessage());
-
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+        ErrorResponseDto errorResponse = new ErrorResponseDto(
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST,
+                "Registration error",
+                ex.getMessage()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)
