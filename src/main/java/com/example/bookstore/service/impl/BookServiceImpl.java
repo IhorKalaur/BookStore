@@ -7,8 +7,10 @@ import com.example.bookstore.exceptions.EntityNotFoundException;
 import com.example.bookstore.mapper.BookMapper;
 import com.example.bookstore.model.Book;
 import com.example.bookstore.repository.BookRepository;
+import com.example.bookstore.repository.CategoryRepository;
 import com.example.bookstore.service.BookService;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -17,13 +19,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
+    private final CategoryRepository categoryRepository;
     private final BookMapper bookMapper;
 
     @Override
     public BookDto save(CreateBookRequestDto requestDto) {
+        Book entity = bookMapper.toEntity(requestDto);
+        if (requestDto.getCategoryIds() != null) {
+            entity.setCategories(requestDto.getCategoryIds().stream()
+                .map(id -> categoryRepository.findById(id)
+                        .orElseThrow(() -> new EntityNotFoundException(
+                                "Category with id: " + id + " not found")))
+                .collect(Collectors.toSet()));
+        }
         return bookMapper.toDto(
-                bookRepository.save(
-                        bookMapper.toEntity(requestDto)));
+                bookRepository.save(entity));
     }
 
     @Override

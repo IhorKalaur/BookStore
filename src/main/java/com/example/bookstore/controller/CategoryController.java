@@ -5,6 +5,7 @@ import com.example.bookstore.dto.category.CategoryDto;
 import com.example.bookstore.dto.category.CreateCategoryRequestDto;
 import com.example.bookstore.service.BookService;
 import com.example.bookstore.service.CategoryService;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +26,7 @@ public class CategoryController {
     private final BookService bookService;
 
     @PostMapping
-    public CategoryDto create(@RequestBody CreateCategoryRequestDto categoryRequestDto) {
+    public CategoryDto create(@RequestBody @Valid CreateCategoryRequestDto categoryRequestDto) {
         return categoryService.save(categoryRequestDto);
     }
 
@@ -41,7 +42,8 @@ public class CategoryController {
 
     @PutMapping("{id}")
     public CategoryDto update(@PathVariable Long id,
-                                      @RequestBody CreateCategoryRequestDto categoryRequestDto) {
+                                      @RequestBody
+                                      @Valid CreateCategoryRequestDto categoryRequestDto) {
         return categoryService.update(id, categoryRequestDto);
     }
 
