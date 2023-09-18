@@ -1,7 +1,7 @@
 package com.example.bookstore.service.impl;
 
-import com.example.bookstore.dto.BookDto;
-import com.example.bookstore.dto.CreateBookRequestDto;
+import com.example.bookstore.dto.book.BookDto;
+import com.example.bookstore.dto.book.CreateBookRequestDto;
 import com.example.bookstore.exceptions.EntityNotFoundException;
 import com.example.bookstore.mapper.BookMapper;
 import com.example.bookstore.model.Book;
@@ -20,8 +20,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto save(CreateBookRequestDto requestDto) {
-        Book book = bookMapper.toModel(requestDto);
-        return bookMapper.toDto(bookRepository.save(book));
+        return bookMapper.toDto(
+                bookRepository.save(
+                        bookMapper.toModel(requestDto)));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.bookstore.exceptions;
 
+import com.example.bookstore.dto.error.ErrorResponseDto;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -35,8 +36,21 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(body, headers, status);
     }
 
+    @ExceptionHandler(RegistrationException.class)
+    protected ResponseEntity<Object> handleRegistrationException(
+            RegistrationException ex,
+            WebRequest request) {
+        ErrorResponseDto errorResponse = new ErrorResponseDto(
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST,
+                "Registration error",
+                ex.getMessage()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleAllExceptions(Exception ex) {
+    protected ResponseEntity<String> handleAllExceptions(Exception ex) {
         return new ResponseEntity<>("An unexpected error occurred",
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }

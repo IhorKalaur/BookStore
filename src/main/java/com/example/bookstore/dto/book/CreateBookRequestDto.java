@@ -1,4 +1,4 @@
-package com.example.bookstore.dto;
+package com.example.bookstore.dto.book;
 
 import com.example.bookstore.validator.Isbn;
 import jakarta.validation.constraints.NotBlank;
@@ -17,14 +17,14 @@ public class CreateBookRequestDto {
             message = "Only Latin letters, digits, and special characters are allowed")
     private String title;
     @NotBlank(message = "Can't be null or empty")
-    @Length(min = 3, max = 50, message = "Length must be more than  3, but less than  50")
+    @Length(min = 5, max = 50, message = "Length must be more than  5, but less than  50")
     @Pattern(regexp = "^[A-Za-z\\s']+$", message = "Only Latin letters are allowed")
     private String author;
     @NotNull
     @Isbn
     private String isbn;
     @NotNull
-    @PositiveOrZero (message = "Only non-negative price are allowed")
+    @PositiveOrZero(message = "Only non-negative price are allowed")
     private BigDecimal price;
     private String description;
     private String coverImage;

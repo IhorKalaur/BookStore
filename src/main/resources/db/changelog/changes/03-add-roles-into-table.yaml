@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: fill-the-roles-table
+      author: ihor_kalaur
+      changes:
+        - loadData:
+            file: role_data.csv
+            tableName: roles
+            separator: ','
+            columns:
+              - column:
+                  name: id
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
