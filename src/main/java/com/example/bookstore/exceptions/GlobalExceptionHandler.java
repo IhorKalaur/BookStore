@@ -62,11 +62,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(Exception.class)
+    /*@ExceptionHandler(Exception.class)
     protected ResponseEntity<String> handleAllExceptions(Exception ex) {
         return new ResponseEntity<>("An unexpected error occurred",
                 HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+    }*/
 
     private String getErrorMessage(ObjectError e) {
         if (e instanceof FieldError) {

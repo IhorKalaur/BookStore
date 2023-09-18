@@ -22,6 +22,7 @@ public class CartItem {
 
     @NotNull
     @ManyToOne
+    @JoinColumn(name = "shopping_cart_id")
     private ShoppingCart shoppingCart;
 
     @NotNull
@@ -30,6 +31,7 @@ public class CartItem {
     private Book book;
 
     @NotNull
-    @Column(name = "quantity")
+    @Column(name = "quantity",
+            nullable = false)
     private Integer quantity;
 }
