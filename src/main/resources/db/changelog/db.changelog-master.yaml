@@ -16,4 +16,4 @@ databaseChangeLog:
   - include:
       file: db/changelog/changes/08-create-books-categories-table.yaml
   - include:
-      file: db/changelog/changes/08_1-add-primary-key-to-order-items.yaml
+      file: db/changelog/changes/08_1-add-primary-key-to-books_categories.yaml

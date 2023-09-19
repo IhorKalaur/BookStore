@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-primary-key-to-books_categories
+      author: ihor-kalaur
+      changes:
+        - addColumn:
+            tableName: books_categories
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
