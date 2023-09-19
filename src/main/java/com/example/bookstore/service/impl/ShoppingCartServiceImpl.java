@@ -2,6 +2,7 @@ package com.example.bookstore.service.impl;
 
 import com.example.bookstore.dto.cart.item.CartItemDto;
 import com.example.bookstore.dto.cart.item.CreateCartItemRequestDto;
+import com.example.bookstore.dto.cart.item.UpdateCartItemRequestDto;
 import com.example.bookstore.dto.shopping.cart.ShoppingCartDto;
 import com.example.bookstore.exceptions.EntityNotFoundException;
 import com.example.bookstore.mapper.CartItemMapper;
@@ -35,7 +36,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final ShoppingCartMapper shoppingCartMapper;
 
     @Override
-    public CartItemDto save(CreateCartItemRequestDto requestDto) {
+    public CartItemDto addCartItem(CreateCartItemRequestDto requestDto) {
         ShoppingCart shoppingCart = getShoppingCartForCurrentUser();
 
         CartItem cartItem = new CartItem();
@@ -58,6 +59,20 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 .collect(Collectors.toSet()));
 
         return shoppingCartDto;
+    }
+
+    @Override
+    public CartItemDto updateCartItem(Long id, UpdateCartItemRequestDto requestDto) {
+        CartItem cartItem = cartItemRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Can't find cartItem by id: " + id));
+        cartItem.setQuantity(requestDto.getQuantity());
+        return cartItemMapper.toDto(cartItemRepository.save(cartItem));
+    }
+
+    @Override
+    public void deleteCartItem(Long id) {
+        cartItemRepository.deleteById(id);
     }
 
     private ShoppingCart getShoppingCartForCurrentUser() {
