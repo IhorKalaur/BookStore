@@ -14,10 +14,7 @@ import com.example.bookstore.model.User;
 import com.example.bookstore.repository.BookRepository;
 import com.example.bookstore.repository.CartItemRepository;
 import com.example.bookstore.repository.ShoppingCartRepository;
-import com.example.bookstore.repository.UserRepository;
-import com.example.bookstore.service.BookService;
 import com.example.bookstore.service.ShoppingCartService;
-import com.example.bookstore.service.UserService;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,11 +23,8 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class ShoppingCartServiceImpl implements ShoppingCartService {
-    private final UserRepository userRepository;
     private final ShoppingCartRepository shoppingCartRepository;
     private final CartItemRepository cartItemRepository;
-    private final UserService userService;
-    private final BookService bookService;
     private final BookRepository bookRepository;
     private final CartItemMapper cartItemMapper;
     private final ShoppingCartMapper shoppingCartMapper;
