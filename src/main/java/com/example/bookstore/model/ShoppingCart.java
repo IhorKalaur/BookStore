@@ -15,9 +15,13 @@ import java.util.Set;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.apache.commons.lang3.builder.ToStringExclude;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Data
+@SQLDelete(sql = "UPDATE shopping_carts SET is_deleted = true WHERE id=?")
+@Where(clause = "is_deleted=false")
 @Table(name = "shopping_carts")
 public class ShoppingCart {
     @Id
@@ -33,4 +37,8 @@ public class ShoppingCart {
     @ToStringExclude
     @EqualsAndHashCode.Exclude
     private Set<CartItem> cartItems = new HashSet<>();
+
+    @Column(name = "is_deleted",
+            nullable = false)
+    private boolean isDeleted = false;
 }
