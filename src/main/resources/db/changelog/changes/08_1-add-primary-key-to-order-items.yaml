@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-primary-key-to-order-items
+      author: ihor-kalaur
+      changes:
+        - addPrimaryKey:
+            tableName: order_items
+            columnNames: id
+            constraintName: pk_order_items_id
