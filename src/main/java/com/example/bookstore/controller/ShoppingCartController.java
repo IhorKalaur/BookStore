@@ -31,7 +31,7 @@ public class ShoppingCartController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "get shopping cart for current user",
+    @Operation(summary = "Get shopping cart for current user",
             description = "to see which books are in shopping cart")
     public ShoppingCartDto get() {
         return shoppingCartService.get();
@@ -40,29 +40,29 @@ public class ShoppingCartController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "create new cart item",
+    @Operation(summary = "Create new cart item",
             description = "add cart item to shopping cart for current user")
-    public CartItemDto addCartItem(@RequestBody @Valid CreateCartItemRequestDto addRequestDto) {
-        return shoppingCartService.addCartItem(addRequestDto);
+    public CartItemDto add(@RequestBody @Valid CreateCartItemRequestDto addRequestDto) {
+        return shoppingCartService.add(addRequestDto);
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @PutMapping("/cart-items/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "update a cart item",
+    @Operation(summary = "Update a cart item",
             description = "update quantity of books in cart item")
-    public CartItemDto updateCartItem(@PathVariable Long id,
-                                      @RequestBody
-                                      @Valid UpdateCartItemRequestDto updateRequestDto) {
-        return shoppingCartService.updateCartItem(id, updateRequestDto);
+    public CartItemDto update(@PathVariable Long id,
+                              @RequestBody
+                              @Valid UpdateCartItemRequestDto updateRequestDto) {
+        return shoppingCartService.update(id, updateRequestDto);
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @DeleteMapping("/cart-items/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @Operation(summary = "delete a cart item",
+    @Operation(summary = "Delete a cart item",
             description = "delete cart item from shopping cart by id")
-    void deleteCartItem(@PathVariable Long id) {
-        shoppingCartService.deleteCartItem(id);
+    void delete(@PathVariable Long id) {
+        shoppingCartService.delete(id);
     }
 }
