@@ -7,6 +7,10 @@ import lombok.Data;
 @Data
 public class ShoppingCartDto {
     private Long id;
+
+    private Long userId;
+
     private String userName;
+
     private Set<CartItemDtoWithoutShoppingCartId> cartItems;
 }
