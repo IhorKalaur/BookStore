@@ -59,6 +59,7 @@ public class BookController {
     }
 
     @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "update a book",
             description = "Update a book's information "
                     + "in the database using the provided book data.")
@@ -68,8 +69,8 @@ public class BookController {
         return bookService.update(id, bookRequestDto);
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Operation(summary = "delete a book by id",
             description = "mark a book as deleted")
