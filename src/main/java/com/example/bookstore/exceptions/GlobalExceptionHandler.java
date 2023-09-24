@@ -43,7 +43,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorResponseDto errorResponse = new ErrorResponseDto(
                 LocalDateTime.now(),
                 HttpStatus.BAD_REQUEST,
-                "Registration error",
                 ex.getMessage()
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
@@ -56,12 +55,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorResponseDto errorResponse = new ErrorResponseDto(
                 LocalDateTime.now(),
                 HttpStatus.NOT_FOUND,
-                "EntityNotFoundException",
                 ex.getMessage()
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
-
+  
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<String> handleAllExceptions(Exception ex) {
         return new ResponseEntity<>("An unexpected error occurred",
