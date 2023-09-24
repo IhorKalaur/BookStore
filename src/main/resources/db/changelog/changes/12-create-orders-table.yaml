@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: create-order-table
+      id: create-orders-table
       author: ihor-kalaur
       changes:
         - createTable:
@@ -9,6 +9,7 @@ databaseChangeLog:
               - column:
                   name: id
                   type: BIGINT
+                  autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
@@ -17,6 +18,8 @@ databaseChangeLog:
                   type: BIGINT
                   constraints:
                     nullable: false
+                    references: users(id)
+                    foreignKeyName: fk_orders_user_id
               - column:
                   name: status
                   type: VARCHAR(255)
@@ -24,7 +27,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: total
-                  type: DECIMAL(19, 2)
+                  type: NUMERIC(19,2)
                   constraints:
                     nullable: false
               - column:

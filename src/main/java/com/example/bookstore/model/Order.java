@@ -60,6 +60,7 @@ public class Order {
 
     public enum Status{
         STATUS_COMPLETED,
+        STATUS_CONFIRMED,
         STATUS_PENDING,
         STATUS_DELIVERED
     }
