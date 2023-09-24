@@ -29,11 +29,14 @@ public class ShoppingCart {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id",
+            referencedColumnName = "id",
+            nullable = false)
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shoppingCart")
+    @OneToMany(fetch = FetchType.LAZY,
+            mappedBy = "shoppingCart")
     @ToStringExclude
     @EqualsAndHashCode.Exclude
     private Set<CartItem> cartItems = new HashSet<>();

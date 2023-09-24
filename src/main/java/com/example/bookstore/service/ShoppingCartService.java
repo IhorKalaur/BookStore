@@ -6,11 +6,11 @@ import com.example.bookstore.dto.cart.item.UpdateCartItemRequestDto;
 import com.example.bookstore.dto.shopping.cart.ShoppingCartDto;
 
 public interface ShoppingCartService {
-    CartItemDto addCartItem(CreateCartItemRequestDto requestDto);
+    CartItemDto add(CreateCartItemRequestDto requestDto);
 
     ShoppingCartDto get();
 
-    CartItemDto updateCartItem(Long id, UpdateCartItemRequestDto requestDto);
+    CartItemDto update(Long id, UpdateCartItemRequestDto requestDto);
 
-    void deleteCartItem(Long id);
+    void delete(Long id);
 }
