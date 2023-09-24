@@ -10,7 +10,5 @@ public class ShoppingCartDto {
 
     private Long userId;
 
-    private String userName;
-
     private Set<CartItemDtoWithoutShoppingCartId> cartItems;
 }
