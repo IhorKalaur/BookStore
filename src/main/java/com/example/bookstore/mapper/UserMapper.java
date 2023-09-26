@@ -9,7 +9,7 @@ import org.mapstruct.Mapper;
 @Mapper(config = MapperConfig.class)
 public interface UserMapper {
 
-    User toModel(UserRegistrationRequestDto requestBookDto);
+    User toModel(UserRegistrationRequestDto requestDto);
 
     UserRegistrationResponseDto toResponseDto(User user);
 }

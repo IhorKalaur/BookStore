@@ -20,6 +20,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "name",
             nullable = false,
@@ -30,5 +31,4 @@ public class Role {
         ROLE_ADMIN,
         ROLE_USER
     }
-
 }
