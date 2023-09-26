@@ -34,31 +34,36 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @JoinColumn(nullable = false
-            ,name = "user_id")
+    @JoinColumn(nullable = false,
+            name = "user_id")
     private User user;
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private  Status status;
+    @Column(nullable = false,
+            name = "status")
+    private Status status;
 
-    @Column(nullable = false)
+    @Column(nullable = false,
+            name = "total")
     private BigDecimal total;
 
-    @Column(nullable = false)
-    LocalDateTime orderDate;
+    @Column(nullable = false,
+            name = "order_date")
+    private LocalDateTime orderDate;
 
-    @Column(nullable = false)
-    String shippingAddress;
+    @Column(nullable = false,
+            name = "shipping_address")
+    private String shippingAddress;
 
     @OneToMany(mappedBy = "order")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<OrderItem> orderItems;
 
-    @Column(nullable = false)
+    @Column(nullable = false,
+            name = "is_deleted")
     private boolean isDeleted;
 
-    public enum Status{
+    public enum Status {
         STATUS_COMPLETED,
         STATUS_CONFIRMED,
         STATUS_PENDING,
