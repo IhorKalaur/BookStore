@@ -107,18 +107,12 @@ public class OrderServiceImpl implements OrderService {
                         .map(orderItemMapper::toDto)
                 .collect(Collectors.toSet()));
 
-
         return orderDto;
     }
 
     @Override
     public List<OrderItemDto> getOrderItems(Long orderId, Pageable pageable) {
-        Long currentUsersId = userService.getCurrentUser().getId();
-        Order orderFromDb = orderRepository.findOrderById(orderId).orElseThrow(
-                () -> new EntityNotFoundException("Can't find order by id " + orderId));
-        if (!orderFromDb.getUser().getId().equals(currentUsersId)) {
-            throw new EntityNotFoundException("Can't find order by id " + orderId);
-        }
+        Order orderFromDb = getOrderForCurrentUser(orderId);
         return orderFromDb.getOrderItems().stream()
                 .map(orderItemMapper::toDto)
                 .toList();
@@ -126,18 +120,23 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderItemDto getByItemIdAndOrderId(Long itemId, Long orderId) {
-        Long currentUsersId = userService.getCurrentUser().getId();
-        Order orderFromDb = orderRepository.findOrderById(orderId).orElseThrow(
-                () -> new EntityNotFoundException("Can't find order by id " + orderId));
-        if (!orderFromDb.getUser().getId().equals(currentUsersId)) {
-            throw new EntityNotFoundException("Can't find order by id " + orderId);
-        }
+        getOrderForCurrentUser(orderId);
         return orderItemRepository
                 .findOrderItemByIdAndOrderId(itemId, orderId)
                 .map(orderItemMapper::toDto)
                 .orElseThrow(() -> new EntityNotFoundException(
                         "Can't find Order Item by id: " + itemId
                 ));
+    }
+
+    private Order getOrderForCurrentUser(Long orderId) {
+        Long currentUsersId = userService.getCurrentUser().getId();
+        Order orderFromDb = orderRepository.findOrderById(orderId).orElseThrow(
+                () -> new EntityNotFoundException("Can't find order by id " + orderId));
+        if (!orderFromDb.getUser().getId().equals(currentUsersId)) {
+            throw new EntityNotFoundException("Can't find order by id " + orderId);
+        }
+        return orderFromDb;
     }
 
     private BigDecimal getTotalPrice(ShoppingCart shoppingCart) {
