@@ -25,6 +25,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Data
@@ -38,6 +39,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderItemMapper orderItemMapper;
 
     @Override
+    @Transactional
     public OrderDto create(CreateOrderShippingAddressRequestDto createOrderRequestDto) {
         ShoppingCart shoppingCartForCurrentUser = userService.getShoppingCartForCurrentUser();
 
@@ -96,6 +98,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public OrderDto updateStatus(Long id, UpdateOrderStatusRequestDto orderStatusRequestDto) {
         Order orderFromDb = orderRepository.findOrderById(id).orElseThrow(
                 () -> new EntityNotFoundException("Can't find order by id " + id));
