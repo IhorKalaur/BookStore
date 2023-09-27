@@ -51,8 +51,4 @@ public class UserServiceImpl implements UserService {
                     return shoppingCartRepository.save(newShoppingCart);
                 });
     }
-
-    public User getCurrentUser() {
-        return (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }
 }

@@ -23,7 +23,3 @@ databaseChangeLog:
       file: db/changelog/changes/10-create-cart_items-table.yaml
   - include:
       file: db/changelog/changes/11-add-is_deleted-column-to-shopping_carts-and-cart_Items.yaml
-  - include:
-      file: db/changelog/changes/12-create-orders-table.yaml
-  - include:
-      file: db/changelog/changes/13-create-order_items-table.yaml
