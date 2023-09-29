@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface BookRepository extends JpaRepository<Book, Long> {
 
     List<Book> findAllByCategories_Id(Long id);
+
     @Query("SELECT DISTINCT b FROM Book b LEFT JOIN FETCH b.categories")
     List<Book> findAllWithCategories(Pageable pageable);
 
