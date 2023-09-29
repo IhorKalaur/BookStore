@@ -11,6 +11,5 @@ public interface UserService {
             throws RegistrationException;
 
     ShoppingCart getShoppingCartForCurrentUser();
-
     User getCurrentUser();
 }
