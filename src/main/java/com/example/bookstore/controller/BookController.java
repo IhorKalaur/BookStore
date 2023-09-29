@@ -10,6 +10,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,10 +35,9 @@ public class BookController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "get all books",
             description = "get list of available books")
-    public List<BookDto> getAll(Pageable pageable,
-                                @RequestParam(defaultValue = "1") int page,
+    public List<BookDto> getAll(@RequestParam(defaultValue = "1") int page,
                                 @RequestParam(defaultValue = "5") int size) {
-        Pageable updatedPageable = PageRequest.of(page - 1, size, pageable.getSort());
+        Pageable updatedPageable = PageRequest.of(page - 1, size, Sort.unsorted());
         return bookService.findAll(updatedPageable);
     }
 
