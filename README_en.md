@@ -67,4 +67,4 @@ I appreciate the assistance and contributions of users and community members. Yo
 
 ## Contact
 
-If you have questions, suggestions, or need assistance, please feel free to reach out to us via email at `ihorkalaur@gmail.com`.
+If you have questions, suggestions, or need assistance, please feel free to reach out to us via email at: `ihorkalaur@gmail.com`.
