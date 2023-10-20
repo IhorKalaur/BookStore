@@ -32,7 +32,7 @@ Hello and welcome to the online book store. This project is a web application de
 
 ## Usage
 
-To get started with the "Book Store Web Application," you need to follow a few simple steps:
+To get started with the "Book Store Web Application," you need to follow a few simple steps.
 
 ### Using Docker
 
@@ -58,7 +58,7 @@ To get started with the "Book Store Web Application," you need to follow a few s
 
 ## Community Contribution
 
-We appreciate the assistance and contributions of users and community members. You can also contribute to the project, even if you are not a developer. This can include:
+I appreciate the assistance and contributions of users and community members. You can also contribute to the project, even if you are not a developer. This can include:
 
 1. Reporting bugs and issues.
 2. Participating in testing and reporting results.
