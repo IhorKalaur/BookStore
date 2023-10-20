@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class UpdateCartItemRequestDto {
-    @Positive
+    @Positive(message = "only positive digits allowed")
     private Integer quantity;
 }

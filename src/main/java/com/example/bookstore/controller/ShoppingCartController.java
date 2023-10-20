@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
 
-    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Get shopping cart for current user",
             description = "to see which books are in shopping cart")
@@ -37,8 +37,8 @@ public class ShoppingCartController {
         return shoppingCartService.get();
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Create new cart item",
             description = "add cart item to shopping cart for current user")
@@ -46,8 +46,8 @@ public class ShoppingCartController {
         return shoppingCartService.add(addRequestDto);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
     @PutMapping("/cart-items/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Update a cart item",
             description = "update quantity of books in cart item")
@@ -57,8 +57,8 @@ public class ShoppingCartController {
         return shoppingCartService.update(id, updateRequestDto);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
     @DeleteMapping("/cart-items/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Delete a cart item",
             description = "delete cart item from shopping cart by id")

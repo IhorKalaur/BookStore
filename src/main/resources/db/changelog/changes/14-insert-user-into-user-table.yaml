@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-admin-into-users-table
+      author: ihor-kalaur
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: user@user.ua
+              - column:
+                  name: password
+                  value: $2a$10$65smPy06uFBY4ByDVaVOo.YTNnb8fA84cN5yYvtODMMCLn3I1ka7u
+              - column:
+                  name: first_name
+                  value: User
+              - column:
+                  name: last_name
+                  value: User
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'user@user.ua')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE name = 'ROLE_USER')

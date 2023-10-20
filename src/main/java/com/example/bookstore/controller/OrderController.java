@@ -27,55 +27,56 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
     private final OrderService orderService;
 
+    @GetMapping
     @Operation(
             summary = "Get all order history",
-            description = "Get a list of order history"
+            description = "Get a list of order history. Only for users"
     )
     @PreAuthorize("hasRole('USER')")
-    @GetMapping
     public List<OrderDto> getAll(Pageable pageable) {
         return orderService.getAll(pageable);
     }
 
+    @GetMapping(value = "/{orderId}/items")
     @Operation(
             summary = "Get all order items for a specific order",
-            description = "Get a list of all order items in for a specific order"
+            description = "Get a list of all order items in for a specific order. Only for users"
     )
     @PreAuthorize("hasRole('USER')")
-    @GetMapping(value = "/{orderId}/items")
     public List<OrderItemDto> getOrderItems(@PathVariable Long orderId,
                                             Pageable pageable) {
         return orderService.getOrderItems(orderId, pageable);
     }
 
+    @GetMapping(value = "/{orderId}/items/{itemId}")
     @Operation(
             summary = "Get a specific order item for a specific order",
-            description = "Get a specific order item for a specific order for current user"
+            description = "Get a specific order item for a specific order for current user."
+                    + " Only for users"
     )
     @PreAuthorize("hasRole('USER')")
-    @GetMapping(value = "/{orderId}/items/{itemId}")
     public OrderItemDto getByItemIdAndOrderId(@PathVariable Long itemId,
                                               @PathVariable Long orderId) {
         return orderService.getByItemIdAndOrderId(itemId,orderId);
     }
 
+    @PostMapping
     @Operation(
             summary = "Create an order",
             description = "Set shipping address for orders and create order"
     )
     @PreAuthorize("hasRole('USER')")
-    @PostMapping
     public OrderDto create(
             @RequestBody @Valid CreateOrderShippingAddressRequestDto shippingAddressRequestDto) {
         return orderService.create(shippingAddressRequestDto);
     }
 
+    @PatchMapping("/{id}")
     @Operation(
             summary = "Update order status",
             description = "Update the status of a specific order"
     )
     @PreAuthorize("hasRole('ADMIN')")
-    @PatchMapping("/{id}")
     public OrderDto updateStatus(@PathVariable Long id,
                                  @RequestBody UpdateOrderStatusRequestDto statusRequestDto) {
         return orderService.updateStatus(id, statusRequestDto);
