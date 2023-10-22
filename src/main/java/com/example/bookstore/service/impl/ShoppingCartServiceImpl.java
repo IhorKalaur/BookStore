@@ -28,13 +28,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final UserService userService;
 
     @Override
-    public CartItemDto add(CreateCartItemRequestDto requestDto) {
+    public CartItemDto addCartItem(CreateCartItemRequestDto requestDto) {
         ShoppingCart shoppingCart = userService.getShoppingCartForCurrentUser();
 
         CartItem cartItem = new CartItem();
         Book book = bookRepository.findById(requestDto.getBookId())
                         .orElseThrow(() -> new EntityNotFoundException(
-                                "Can't find book with id: " + requestDto.getBookId()));
+                                "Can't find book by id: " + requestDto.getBookId()));
         cartItem.setBook(book);
         cartItem.setShoppingCart(shoppingCart);
         cartItem.setQuantity(requestDto.getQuantity());

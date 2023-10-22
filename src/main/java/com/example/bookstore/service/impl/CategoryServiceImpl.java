@@ -9,12 +9,10 @@ import com.example.bookstore.repository.CategoryRepository;
 import com.example.bookstore.service.CategoryService;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-@Data
 @RequiredArgsConstructor
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -44,6 +42,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDto update(Long id, CreateCategoryRequestDto categoryRequestDto) {
+        if (!categoryRepository.existsById(id)) {
+            throw new EntityNotFoundException("Can't find category by id: " + id);
+        }
         Category category = categoryMapper.toEntity(categoryRequestDto);
         category.setId(id);
         return categoryMapper.toDto(categoryRepository.save(category));

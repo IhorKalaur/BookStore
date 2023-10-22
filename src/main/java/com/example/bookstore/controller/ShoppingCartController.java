@@ -43,7 +43,7 @@ public class ShoppingCartController {
     @Operation(summary = "Create new cart item",
             description = "add cart item to shopping cart for current user")
     public CartItemDto add(@RequestBody @Valid CreateCartItemRequestDto addRequestDto) {
-        return shoppingCartService.add(addRequestDto);
+        return shoppingCartService.addCartItem(addRequestDto);
     }
 
     @PutMapping("/cart-items/{id}")
