@@ -27,22 +27,22 @@ public class AuthenticationController {
     private final UserService userService;
     private final AuthenticationService authenticationService;
 
+    @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Register a new user",
             description = "Registration of a new user with the specified information"
     )
-    @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED)
     public UserRegistrationResponseDto register(
             @RequestBody @Valid UserRegistrationRequestDto requestDto)
             throws RegistrationException {
         return userService.register(requestDto);
     }
 
+    @PostMapping("/login")
+    @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "User Login",
             description = "Authenticate a user by email and password"
     )
-    @PostMapping("/login")
-    @ResponseStatus(HttpStatus.OK)
     public UserLoginResponseDto login(@RequestBody @Valid UserLoginRequestDto requestDto) {
         return authenticationService.authenticate(requestDto);
     }

@@ -33,32 +33,32 @@ public class CategoryController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "get all categories",
-            description = "get all available categories. Max on one page: 20")
+    @Operation(summary = "Get all categories",
+            description = "Get all available categories. Max on one page: 20")
     public List<CategoryDto> getAll(Pageable pageable) {
         return categoryService.findAll(pageable);
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "get category by id",
-            description = "get category by id, if it available")
+    @Operation(summary = "Get category by id",
+            description = "Get category by id, if it available")
     public CategoryDto getById(@PathVariable Long id) {
         return categoryService.getById(id);
     }
 
     @GetMapping("/{id}/books")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "get all books by category id",
-            description = "get list of all available books witch have same category")
+    @Operation(summary = "Get all books by category id",
+            description = "Get list of all available books witch have same category")
     public List<BookDtoWithoutCategoryIds> getBooksByCategoryId(@PathVariable Long id) {
         return bookService.findAllByCategories_Id(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "create a new category",
-            description = "save new category to DB")
+    @Operation(summary = "Create a new category",
+            description = "Save new category to DB. Only for admin")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public CategoryDto create(@RequestBody @Valid CreateCategoryRequestDto categoryRequestDto) {
         return categoryService.save(categoryRequestDto);
@@ -66,9 +66,9 @@ public class CategoryController {
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "update a category",
+    @Operation(summary = "Update a category",
             description = "Update a category's information "
-                    + "in the database using the provided category data.")
+                    + "in the database using the provided category data. Only for admin")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public CategoryDto update(@PathVariable Long id,
                                       @RequestBody
@@ -78,8 +78,8 @@ public class CategoryController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @Operation(summary = "delete a category by id",
-            description = "mark a category as deleted")
+    @Operation(summary = "Delete a category by id",
+            description = "Mark a category as deleted. Only for admin")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void delete(@PathVariable Long id) {
         categoryService.deleteById(id);

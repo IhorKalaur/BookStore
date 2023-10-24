@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 public class CreateCategoryRequestDto {
-    @NotBlank
+    @NotBlank(message = "required field")
     @Size(min = 5, max = 50, message = "size must be between 5 and 50 character")
     @Pattern(regexp = "^[a-zA-Z']+$", message = "Only Latin letters are allowed")
     private String name;

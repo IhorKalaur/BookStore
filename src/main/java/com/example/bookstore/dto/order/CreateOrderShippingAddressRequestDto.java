@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Length;
 
 @Data
 public class CreateOrderShippingAddressRequestDto {
-    @NotBlank
-    @Length(max = 255)
+    @NotBlank(message = "required field")
+    @Length(max = 255, message = "size must be less than 255 character")
     private String shippingAddress;
 }

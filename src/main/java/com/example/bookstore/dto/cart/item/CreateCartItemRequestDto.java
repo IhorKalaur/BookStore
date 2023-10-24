@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 public class CreateCartItemRequestDto {
-    @Positive
+    @Positive(message = "only positive digits allowed")
     private Long bookId;
-    @Positive
+    @Positive(message = "only positive digits allowed")
     private Integer quantity;
 }

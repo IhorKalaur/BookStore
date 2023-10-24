@@ -27,3 +27,5 @@ databaseChangeLog:
       file: db/changelog/changes/12-create-orders-table.yaml
   - include:
       file: db/changelog/changes/13-create-order_items-table.yaml
+  - include:
+      file: db/changelog/changes/14-insert-user-into-user-table.yaml

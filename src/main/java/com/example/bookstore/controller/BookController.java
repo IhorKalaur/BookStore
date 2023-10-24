@@ -33,8 +33,8 @@ public class BookController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "get all books",
-            description = "get list of available books")
+    @Operation(summary = "Get all books",
+            description = "Get list of available books")
     public List<BookDto> getAll(@RequestParam(defaultValue = "1") int page,
                                 @RequestParam(defaultValue = "5") int size) {
         Pageable updatedPageable = PageRequest.of(page - 1, size, Sort.unsorted());
@@ -43,8 +43,8 @@ public class BookController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "get book by id",
-            description = "get book by id, if it available")
+    @Operation(summary = "Get book by id",
+            description = "Get book by id, if it available")
     public BookDto getById(@PathVariable Long id) {
         return bookService.getById(id);
     }
@@ -52,17 +52,17 @@ public class BookController {
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "create a new book",
-            description = "save new book to DB with unique ISBN number")
+    @Operation(summary = "Create a new book",
+            description = "Save new book to DB with unique ISBN number. Only for admin")
     public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookRequestDto) {
         return bookService.save(bookRequestDto);
     }
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "update a book",
+    @Operation(summary = "Update a book",
             description = "Update a book's information "
-                    + "in the database using the provided book data.")
+                    + "in the database using the provided book data. Only for admin")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public BookDto update(@PathVariable Long id,
                           @RequestBody @ Valid CreateBookRequestDto bookRequestDto) {
@@ -72,8 +72,8 @@ public class BookController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @Operation(summary = "delete a book by id",
-            description = "mark a book as deleted")
+    @Operation(summary = "Delete a book by id",
+            description = "Mark a book as deleted. Only for admin")
     public void deleteById(@PathVariable Long id) {
         bookService.deleteById(id);
     }
