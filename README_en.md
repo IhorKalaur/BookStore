@@ -4,13 +4,25 @@ Hello and welcome to the online book store. This project is a web application de
 
 ## Overview
 
+You can watch a short video presentation of the project: [Store Overview](https://www.loom.com/share/28eb2fac38354307b9b1f1358581d13c)
+
 ### Functionality
 
 - **User**: Have access to authentication, browsing the catalog of books, viewing details of each book, exploring book categories, sorting book lists, adding books to the cart, and placing orders with specified delivery addresses.
 
 - **Admin**: Have access to adding new books and categories, updating books and categories, managing order status, and handling other administrative tasks. Our admins have full control over the store's inventory and features.
 
-- You can also watch a short video presentation of the project: [Store Overview](https://www.loom.com/share/28eb2fac38354307b9b1f1358581d13c)
+### Controllers
+
+- **AuthenticationController**: Provides endpoints for registering new users and authenticating existing users. This controller helps ensure security and user management in the application, making it a key component for user authentication and registration in the app. It handles HTTP requests and provides documentation through Swagger, simplifying user interaction with the system.
+
+- **BookController**: Handles HTTP requests related to book management in the bookstore. It allows users to retrieve information about available books, create new ones, update existing books, and mark them as deleted.
+
+- **CategoryController**: Responsible for processing HTTP requests related to book category management in the bookstore. It enables users to obtain information about available categories, find books within specific categories, create new categories, update existing ones, and mark categories as deleted. This controller is essential for organizing and managing the book catalog, enabling users and administrators to work effectively with book categories and providing structured inventory management.
+
+- **ShoppingCartController**: Designed to handle HTTP requests related to shopping cart management in the system. This controller allows users to add, update, and remove items from their shopping carts and view their contents. System users can use this functionality for convenient order management and preparation before making purchases, simplifying the shopping process.
+
+- **OrderController**: Responsible for processing HTTP requests related to order management in the e-commerce system. It enables users to view their order history, obtain detailed information about each order item, create new orders, and update their statuses, facilitating the purchase process and providing control over user orders.
 
 ### Technical Stack and Tools
 
