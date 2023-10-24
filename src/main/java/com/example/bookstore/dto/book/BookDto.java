@@ -4,9 +4,7 @@ import java.math.BigDecimal;
 import java.util.Set;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 
-@Accessors(chain = true)
 @Data
 @NoArgsConstructor
 public class BookDto {

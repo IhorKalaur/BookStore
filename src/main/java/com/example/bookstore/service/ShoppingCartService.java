@@ -6,7 +6,7 @@ import com.example.bookstore.dto.cart.item.UpdateCartItemRequestDto;
 import com.example.bookstore.dto.shopping.cart.ShoppingCartDto;
 
 public interface ShoppingCartService {
-    CartItemDto add(CreateCartItemRequestDto requestDto);
+    CartItemDto addCartItem(CreateCartItemRequestDto requestDto);
 
     ShoppingCartDto get();
 

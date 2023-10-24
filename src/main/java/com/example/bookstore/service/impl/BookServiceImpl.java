@@ -29,7 +29,7 @@ public class BookServiceImpl implements BookService {
             entity.setCategories(requestDto.getCategoryIds().stream()
                         .map(id -> categoryRepository.findById(id)
                             .orElseThrow(() -> new EntityNotFoundException(
-                                "Category with id: " + id + " not found")))
+                                    "Can't find category by id: " + id)))
                         .collect(Collectors.toSet()));
         }
         return bookMapper.toDto(
@@ -52,11 +52,14 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDto getById(Long id) {
         return bookMapper.toDto(bookRepository.findByIdWithCategories(id)
-                .orElseThrow(() -> new EntityNotFoundException("Can't get book by id: " + id)));
+                .orElseThrow(() -> new EntityNotFoundException("Can't find book by id: " + id)));
     }
 
     @Override
     public BookDto update(Long id, CreateBookRequestDto requestDto) {
+        if (!bookRepository.existsById(id)) {
+            throw new EntityNotFoundException("Can't find book by id: " + id);
+        }
         Book book = bookMapper.toEntity(requestDto);
         book.setId(id);
         return bookMapper.toDto(bookRepository.save(book));
